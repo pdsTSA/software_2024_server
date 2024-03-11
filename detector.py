@@ -24,4 +24,4 @@ class DrugDetector:
                 if len(rows) > 0:
                     row = self.csv[self.csv.drugName == rows[0]].iloc[0]
                     return row.drugName, row.condition, bounds
-        return None
+        return None, None, None

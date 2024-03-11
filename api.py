@@ -7,6 +7,8 @@ engine = DrugDetector()
 
 def analyze(file_name: str) -> (str, str):
     name, condition, bounds = engine.detect(file_name)
+    if name is None:
+        return None, None
     image = Image.open(file_name)
     draw = ImageDraw.Draw(image)
 

@@ -1,7 +1,7 @@
 import time
 import os
 import glob
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, abort
 from flask import request
 import api
 
@@ -18,6 +18,8 @@ def drug_identify():
     file_name = f"tmp/{int(time.time())}.{f.filename.split('.')[1]}"
     f.save(file_name)
     name, condition = api.analyze(file_name)
+    if name is None:
+        abort(404)
     return {
         "drug": name,
         "condition": condition,
